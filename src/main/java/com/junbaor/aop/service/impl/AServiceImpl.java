@@ -1,6 +1,7 @@
 package com.junbaor.aop.service.impl;
 
 import com.alibaba.fastjson.JSON;
+import com.junbaor.aop.annotation.Comment;
 import com.junbaor.aop.service.AService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,8 +12,11 @@ import org.springframework.stereotype.Service;
 import java.util.Date;
 
 @Service
+@Comment("方法模块注释")
 public class AServiceImpl implements AService {
+
     private static final Logger log = LoggerFactory.getLogger(AServiceImpl.class);
+
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
@@ -27,9 +31,10 @@ public class AServiceImpl implements AService {
         inline();
     }
 
+    @Comment("业务方法注释")
     public String methodB(String a, Integer b, int c, Date date) {
-        log.info("methodB");
-        return "返回值";
+        log.info("业务逻辑执行...");
+        return "我是返回值";
     }
 
     private void inline() {
